@@ -4,10 +4,10 @@ run-name: ${{ github.actor }} push | ${{ github.ref }}
 on: push
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #a machine running latest version of ubuntu
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 #checkout the current repository and push the files to the machine
       - name: Login to Docker Hub
         env:
           DOCKER_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
@@ -15,6 +15,6 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD   
       - name: build docker image
-        run: docker build . -t xqsmog/testimages:latest
+        run: docker build . -t xqsmog/testimages:latest2
       - name: Docker Push
         run: docker push xqsmog/testimages
